@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B806F933-F2B8-4D86-BAAF-83A32369ACB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DATEXIIToolkitTests</RootNamespace>
+    <AssemblyName>DATEXIIToolkitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Controllers\DATEXIIClientControllerTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DATEXIIToolkit\DATEXIIToolkit.csproj">
+      <Project>{9DF86655-2AD0-4402-8D73-6954C93B7933}</Project>
+      <Name>DATEXIIToolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Messages\ANPR_Journey_Time_Data_3794915029662987.xml" />
+    <Content Include="Messages\ANPR_Journey_Time_Data_3794942740543002.xml" />
+    <Content Include="Messages\Event_Data_-_Full_Refresh_3794850927130403.xml" />
+    <Content Include="Messages\Event_Data_3794674417759799.xml" />
+    <Content Include="Messages\Event_Data_3794692773234866.xml" />
+    <Content Include="Messages\Event_Data_3794693100985740.xml" />
+    <Content Include="Messages\Event_Data_3794694049190330.xml" />
+    <Content Include="Messages\Event_Data_3794734504990439.xml" />
+    <Content Include="Messages\Event_Data_3794735677733343.xml" />
+    <Content Include="Messages\Event_Data_3794741283153306.xml" />
+    <Content Include="Messages\Event_Data_3794742248838609.xml" />
+    <Content Include="Messages\Event_Data_3794743002158375.xml" />
+    <Content Include="Messages\Event_Data_3794744282894055.xml" />
+    <Content Include="Messages\Event_Data_3794745031173515.xml" />
+    <Content Include="Messages\Event_Data_3794745724905540.xml" />
+    <Content Include="Messages\Event_Data_3794791350228870.xml" />
+    <Content Include="Messages\Event_Data_3794792202606756.xml" />
+    <Content Include="Messages\Event_Data_3794793076517546.xml" />
+    <Content Include="Messages\Event_Data_3794793690036024.xml" />
+    <Content Include="Messages\Event_Data_3794794165296427.xml" />
+    <Content Include="Messages\Event_Data_3794795332252842.xml" />
+    <Content Include="Messages\Event_Data_3794796576012593.xml" />
+    <Content Include="Messages\Event_Data_3794797233957947.xml" />
+    <Content Include="Messages\Event_Data_3794841881472645.xml" />
+    <Content Include="Messages\Event_Data_3794843779430346.xml" />
+    <Content Include="Messages\Event_Data_3794844533725934.xml" />
+    <Content Include="Messages\Event_Data_3794846251916934.xml" />
+    <Content Include="Messages\Event_Data_3794846909800826.xml" />
+    <Content Include="Messages\Event_Data_3794854390103770.xml" />
+    <Content Include="Messages\Event_Data_3794894661188782.xml" />
+    <Content Include="Messages\Event_Data_3794895369110040.xml" />
+    <Content Include="Messages\Event_Data_3794896042357338.xml" />
+    <Content Include="Messages\Event_Data_3794896780813762.xml" />
+    <Content Include="Messages\Fused_FVD_and_Sensor_PTD_3793821203699073.xml" />
+    <Content Include="Messages\Fused_FVD_and_Sensor_PTD_3793869820373818.xml" />
+    <Content Include="Messages\Fused_Sensor-only_PTD_3793817774626104.xml" />
+    <Content Include="Messages\Fused_Sensor-only_PTD_3793863544426177.xml" />
+    <Content Include="Messages\MIDAS_Loop_Traffic_Data_3793828281116175.xml" />
+    <Content Include="Messages\MIDAS_Loop_Traffic_Data_3793830663507513.xml" />
+    <Content Include="Messages\NTIS_Model_Update_Notification_3707368431094454.xml" />
+    <Content Include="Messages\TMU_Loop_Traffic_Data_3793809993027605.xml" />
+    <Content Include="Messages\TMU_Loop_Traffic_Data_3793825078087298.xml" />
+    <EmbeddedResource Include="Messages\VMS_and_Matrix_Signal_Status_Data_-_Full_Refresh_3793697241479015.xml" />
+    <Content Include="Messages\VMS_and_Matrix_Signal_Status_Data_3794928453993454.xml" />
+    <Content Include="Messages\VMS_and_Matrix_Signal_Status_Data_3794936172555171.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
