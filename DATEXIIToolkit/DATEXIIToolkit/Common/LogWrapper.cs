@@ -22,7 +22,8 @@ namespace DATEXIIToolkit.Common
     {
         private static LogWriter instance;
 
-        private static string LOG_FILE = "\\datexiiToolkit";
+        private static string rootDirectory;
+        private static string LOG_FILE = "datexiiToolkit";
         private static string LOG_FILE_EXT = ".log";
         private static Queue<string> logQueue;
         private static Timer logTimer;
@@ -30,6 +31,11 @@ namespace DATEXIIToolkit.Common
 
         private LogWriter()
         {
+            rootDirectory = ConfigurationManager.AppSettings["rootDirectory"];
+            if (!Directory.Exists(rootDirectory + "logs"))
+            {
+                Directory.CreateDirectory(rootDirectory + "logs");
+            }
             logQueue = new Queue<string>();
             logTimer = new System.Timers.Timer();
             logTimer.Elapsed += new ElapsedEventHandler(LogEvent);
@@ -74,7 +80,7 @@ namespace DATEXIIToolkit.Common
 
                 if (logFileStream == null)
                 {
-                    string fileName = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + LOG_FILE + DateTime.Now.ToString("yyyy-MM-dd") + LOG_FILE_EXT;
+                    string fileName = rootDirectory + "logs\\" + LOG_FILE + "-" + DateTime.Now.ToString("yyyy-MM-dd") + LOG_FILE_EXT;
                     if (File.Exists(fileName)) {
                         logFileStream = File.Open(fileName, FileMode.Append);
                     } else {

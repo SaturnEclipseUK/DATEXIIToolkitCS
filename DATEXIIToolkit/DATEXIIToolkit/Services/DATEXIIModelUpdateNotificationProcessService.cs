@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -12,15 +13,31 @@ namespace DATEXIIToolkit.Services
         LogWrapper logWrapper;
 
         DATEXIINetworkModelUpdateService datexiiNetworkModelUpdateService;
+        private bool loadNwkModelOnStartup;
+        private string ntisNwkModelUsername;
+        private string ntisNwkModelPassword;
         private string ntisNetworkModelBaseURL;
         private string networkModelFolder;
 
         public DATEXIIModelUpdateNotificationProcessService(DATEXIIProcessServiceFactory datexIIProcessServiceFactory) : base()
         {
             logWrapper = new LogWrapper("DATEXIIModelUpdateNotificationProcessService");
+            loadNwkModelOnStartup = ConfigurationManager.AppSettings["loadNwkModelOnStartup"].Equals("true");
+            ntisNwkModelUsername = ConfigurationManager.AppSettings["ntisNwkModelUsername"];
+            ntisNwkModelPassword = ConfigurationManager.AppSettings["ntisNwkModelPassword"];
             ntisNetworkModelBaseURL = ConfigurationManager.AppSettings["ntisNetworkModelBaseURL"];
             networkModelFolder = ConfigurationManager.AppSettings["nwkModelDirectory"];
             datexiiNetworkModelUpdateService = (DATEXIINetworkModelUpdateService)datexIIProcessServiceFactory.getDATEXIIProcessService(DATEXIIProcessServiceFactory.DATA_SERVICE_TYPE.NWK_MODEL_UPDATE);
+        }
+
+        public void initialise()
+        {
+            logWrapper.Info("Initialise network model update service");
+            
+            if (loadNwkModelOnStartup)
+            {
+                datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
+            }
         }
 
         public override void processMessage(D2LogicalModel d2LogicalModel)
@@ -34,7 +51,7 @@ namespace DATEXIIToolkit.Services
 
             if (ntisNetworkModelBaseURL != null)
             {
-                datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, networkModelFolder,  modelFilename);
+                datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
             }
             else {
                 logWrapper.Error("NTIS_NETWORK_MODEL_BASE_URL is not set in application.properties file");

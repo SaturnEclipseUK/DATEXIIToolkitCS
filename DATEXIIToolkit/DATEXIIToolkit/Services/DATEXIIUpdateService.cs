@@ -41,8 +41,8 @@ namespace DATEXIIToolkit.Services
             {
                 instance = new DATEXIIUpdateService();
                 datexiiProcessServiceFactory = DATEXIIProcessServiceFactory.GetInstance(instance);
-                DATEXIINetworkModelUpdateService datexIINetworkModelUpdateService = (DATEXIINetworkModelUpdateService)datexiiProcessServiceFactory.getDATEXIIProcessService(DATEXIIProcessServiceFactory.DATA_SERVICE_TYPE.NWK_MODEL_UPDATE);
-                datexIINetworkModelUpdateService.initialise();
+                DATEXIIModelUpdateNotificationProcessService datexiiModelUpdateNotificationProcessService = (DATEXIIModelUpdateNotificationProcessService)datexiiProcessServiceFactory.getDATEXIIProcessService(DATEXIIProcessServiceFactory.DATA_SERVICE_TYPE.NTIS_MODEL_UPDATE_NOTIFICATION);
+                datexiiModelUpdateNotificationProcessService.initialise();
             }
             return instance;
         }

@@ -14,7 +14,6 @@ namespace DATEXIIToolkit.Services
     public class DATEXIINetworkModelUpdateService : DATEXIIProcessService
     {
         LogWrapper logWrapper;
-        private bool loadCachedNwkModelOnStartup;
         private string nwkModelDirectory;
         private string nwkModelPath;
         private DATEXIIUpdateService datexIIUpdateService;
@@ -24,25 +23,15 @@ namespace DATEXIIToolkit.Services
         {
             this.datexIIUpdateService = datexIIUpdateService;
             logWrapper = new LogWrapper("DATEXIINetworkModelUpdateService");
-        }
-
-        public void initialise()
-        {
-            logWrapper.Info("Initialise network model update service");
-            nwkModelDirectory = ConfigurationManager.AppSettings["nwkModelDirectory"];
+            nwkModelDirectory = ConfigurationManager.AppSettings["rootDirectory"] + 
+                ConfigurationManager.AppSettings["nwkModelDirectory"];
             nwkModelPath = ConfigurationManager.AppSettings["nwkModelPath"];
-            loadCachedNwkModelOnStartup = ConfigurationManager.AppSettings["loadCachedNwkModelOnStartup"].Equals("true");
-
-            if (loadCachedNwkModelOnStartup && Directory.CreateDirectory(nwkModelDirectory).Exists)
-            {
-                parseNetworkModelXMLFiles();
-            }
         }
-
-        public void updateNetworkModel(string url, string networkModelFolder, string filename)
+        
+        public void updateNetworkModel(string url, string username, string password)
         {
             removeExistingNetworkModel();
-            fetchNetworkModel(url, networkModelFolder, filename);
+            fetchNetworkModel(url, username, password);
             unzipNetworkModel();
             parseNetworkModelXMLFiles();
         }
@@ -52,15 +41,8 @@ namespace DATEXIIToolkit.Services
             logWrapper.Info("Removing existing network model");
             try
             {
-                File.Delete(nwkModelDirectory + nwkModelPath);
-                string[] dirList = Directory.GetFiles(nwkModelDirectory);
-
-                for (int dirListPos = 0; dirListPos < dirList.Length; dirListPos++)
-                {
-                    if (dirList[dirListPos].Contains(".xml"))
-                    {
-                        File.Delete(dirList[dirListPos]);
-                    }
+                if (Directory.Exists(nwkModelDirectory)){
+                    Directory.Delete(nwkModelDirectory, true);
                 }
                 
             }
@@ -72,18 +54,18 @@ namespace DATEXIIToolkit.Services
             }
         }
 
-        private void fetchNetworkModel(String url, string networkModelFolder, string filename)
+        private void fetchNetworkModel(String url, string username, string password)
         {
             WebClient myWebClient=null;
             try
             {
-                logWrapper.Info("Downloading network model(" + url + filename + ")");
+                logWrapper.Info("Downloading network model(" + url + ")");
+                Directory.CreateDirectory(nwkModelDirectory);
                 string myStringWebResource = null;
 
                 myWebClient = new WebClient();
-                myStringWebResource = url + filename;
-                myWebClient.DownloadFile(myStringWebResource, networkModelFolder + filename);
-                File.Copy(networkModelFolder + filename, networkModelFolder + nwkModelPath);
+                myStringWebResource = url;
+                myWebClient.DownloadFile(url, nwkModelDirectory+nwkModelPath);                
             }
             catch(Exception e)
             {
@@ -92,7 +74,9 @@ namespace DATEXIIToolkit.Services
             }
             finally
             {
-                myWebClient.Dispose();
+                if (myWebClient != null) {
+                    myWebClient.Dispose();
+                }                
             }
         }
 

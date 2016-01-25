@@ -9,6 +9,8 @@ using System.Web.SessionState;
 using System.Web.Http;
 using DATEXIIToolkit.Services;
 using DATEXIIToolkit.Common;
+using System.Configuration;
+using System.IO;
 
 namespace DATEXIIToolkit
 {
@@ -22,9 +24,15 @@ namespace DATEXIIToolkit
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            
             logWrapper = new LogWrapper("Global");
             logWrapper.Warning("*** Starting DATEXII Toolkit Web Services ***");
+
+            string rootDirectory = ConfigurationManager.AppSettings["rootDirectory"];
+            if (!Directory.Exists(rootDirectory))
+            {
+                Directory.CreateDirectory(rootDirectory);
+            }
             DATEXIIUpdateService.GetInstance();
         }
     }
