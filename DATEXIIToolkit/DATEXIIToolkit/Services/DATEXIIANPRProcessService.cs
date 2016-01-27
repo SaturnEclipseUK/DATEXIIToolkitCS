@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes ANPR DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the ANPR data store.
+    /// </summary>
     public class DATEXIIANPRProcessService : DATEXIIProcessService
     {
         private LogWrapper logWrapper;

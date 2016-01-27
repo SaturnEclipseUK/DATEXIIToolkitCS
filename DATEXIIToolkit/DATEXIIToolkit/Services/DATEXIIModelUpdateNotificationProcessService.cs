@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes ModelUpdateNotification DATEX II v2 messages (D2LogicalModel).
+    /// When a notification is received, the Network Model Update function is invoked.  
+    /// </summary>
     public class DATEXIIModelUpdateNotificationProcessService : DATEXIIProcessService
     {
         LogWrapper logWrapper;

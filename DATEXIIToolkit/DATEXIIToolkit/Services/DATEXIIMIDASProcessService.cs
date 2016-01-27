@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes MIDAS DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the MIDAS data store.
+    /// </summary>
     public class DATEXIIMIDASProcessService : DATEXIIProcessService
     {
         LogWrapper logWrapper;

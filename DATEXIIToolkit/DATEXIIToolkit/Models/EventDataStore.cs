@@ -6,7 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
-
+    /// <summary>
+    /// This data store contains the Event data indexed by event ID.
+    /// </summary>
     public class EventDataStore : DataStore
     {
 

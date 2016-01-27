@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes TMU DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the TMU data store.
+    /// </summary>
     public class DATEXIITMUProcessService : DATEXIIProcessService
     {
         private LogWrapper logWrapper;

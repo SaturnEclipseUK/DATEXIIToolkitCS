@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the FusedSensorOnly data indexed by link ID.
+    /// </summary>
     public class FusedSensorOnlyDataStore : DataStore
     {
 

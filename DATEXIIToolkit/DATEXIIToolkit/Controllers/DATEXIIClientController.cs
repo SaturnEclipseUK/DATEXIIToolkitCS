@@ -14,6 +14,9 @@ using System.Web.Http;
 
 namespace DATEXIIToolkit.Controllers
 {
+    /// <summary>
+    /// A DATEX II HTTP controller to receive raw XML strings and add to the update service queue.
+    /// </summary>
     public class DATEXIIClientController : ApiController
     {
         private static LogWrapper logWrapper;

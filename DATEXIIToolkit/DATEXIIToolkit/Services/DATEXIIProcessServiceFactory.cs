@@ -8,6 +8,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service factory returns the correct DATEX II process service for given Feed Type.
+    /// </summary>
     public class DATEXIIProcessServiceFactory
     {
         private LogWrapper logWrapper;

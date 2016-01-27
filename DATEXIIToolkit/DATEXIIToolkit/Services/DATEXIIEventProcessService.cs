@@ -10,6 +10,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes Event DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the Event data store.
+    /// </summary>
     public class DATEXIIEventProcessService : DATEXIIProcessService
     {
         private static LogWrapper logWrapper;

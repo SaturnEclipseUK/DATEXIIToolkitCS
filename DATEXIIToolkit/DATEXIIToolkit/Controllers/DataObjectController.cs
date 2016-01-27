@@ -16,6 +16,9 @@ using System.Web.Script.Serialization;
 
 namespace DATEXIIToolkit.Controllers
 {
+    /// <summary>
+    /// This HTTP controller provides a URL to retrieve each type DATEX II object in JSON format.
+    /// </summary>
     public class DataObjectController : ApiController
     {
         LogWrapper logWrapper;

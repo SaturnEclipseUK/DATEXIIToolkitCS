@@ -6,52 +6,55 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the VMS data indexed by VMS unit reference ID.
+    /// </summary>
     public class VMSDataStore : DataStore
     {
         public VMSDataStore() : base(){}
 
-    public override void updateData(DataObject data)
-    {
-            lock (this)
-            {
-                VMSData vmsData = (VMSData)data;
-                String vmsIdentifier = vmsData.getVmsIdentifier();
-                if (dataMap.ContainsKey(vmsIdentifier))
+        public override void updateData(DataObject data)
+        {
+                lock (this)
                 {
-                    dataMap.Remove(vmsIdentifier);
-                    dataMap.Add(vmsIdentifier, vmsData);
+                    VMSData vmsData = (VMSData)data;
+                    String vmsIdentifier = vmsData.getVmsIdentifier();
+                    if (dataMap.ContainsKey(vmsIdentifier))
+                    {
+                        dataMap.Remove(vmsIdentifier);
+                        dataMap.Add(vmsIdentifier, vmsData);
+                    }
+                    else {
+                        dataMap.Add(vmsIdentifier, vmsData);
+                    }
                 }
-                else {
-                    dataMap.Add(vmsIdentifier, vmsData);
-                }
-            }
-    }
-
-
-    public LinkedList<VMSData> getAllVMSData()
-    {
-            lock (this)
-            {
-                LinkedList<VMSData> returnDataObjectsList = new LinkedList<VMSData>();
-                IList<DataObject> dataObjectList = new List<DataObject>(dataMap.Values.ToList());
-                foreach (DataObject dataObject in dataObjectList)
-                {
-                    returnDataObjectsList.AddLast((VMSData)dataObject);
-                }
-                return returnDataObjectsList;
-            }
         }
 
-    public override void removeData(String vmsIdentifier)
-    {
-            lock (this)
-            {
-                if (dataMap.ContainsKey(vmsIdentifier))
+
+        public LinkedList<VMSData> getAllVMSData()
+        {
+                lock (this)
                 {
-                    dataMap.Remove(vmsIdentifier);
+                    LinkedList<VMSData> returnDataObjectsList = new LinkedList<VMSData>();
+                    IList<DataObject> dataObjectList = new List<DataObject>(dataMap.Values.ToList());
+                    foreach (DataObject dataObject in dataObjectList)
+                    {
+                        returnDataObjectsList.AddLast((VMSData)dataObject);
+                    }
+                    return returnDataObjectsList;
                 }
             }
+
+        public override void removeData(String vmsIdentifier)
+        {
+                lock (this)
+                {
+                    if (dataMap.ContainsKey(vmsIdentifier))
+                    {
+                        dataMap.Remove(vmsIdentifier);
+                    }
+                }
+        }
     }
-}
 
 }

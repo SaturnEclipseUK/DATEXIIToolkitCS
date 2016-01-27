@@ -13,7 +13,10 @@ using System.Xml.Serialization;
 
 namespace DATEXIIToolkit.Services
 {
-
+    /// <summary>
+    /// This service processes receives raw DATEX II XML formatted data and adds to a queue.
+    /// In turn, each XML string is removed from the queue, parsed and forwarded to the correct process service.
+    /// </summary>
     public class DATEXIIUpdateService
     {
         private static LogWrapper logWrapper;

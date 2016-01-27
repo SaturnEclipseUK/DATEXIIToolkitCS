@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes MeasurementSites DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the TAME, MIDAS, ANPR and TMU data stores.
+    /// </summary>
     public class DATEXIINTISModelMeasurementSitesProcessService : DATEXIIProcessService
     {
         private LogWrapper logWrapper;

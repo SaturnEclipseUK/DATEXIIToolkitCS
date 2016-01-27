@@ -6,7 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
-
+    /// <summary>
+    /// This data store contains the LinkShapeStatic data indexed by predefined location ID.
+    /// </summary>
     public class LinkShapeStaticDataStore : DataStore
     {
 

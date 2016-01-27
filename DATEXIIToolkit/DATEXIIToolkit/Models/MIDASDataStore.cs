@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the MIDAS data indexed by measurement site reference ID.
+    /// </summary>
     public class MIDASDataStore : DataStore
     {
 

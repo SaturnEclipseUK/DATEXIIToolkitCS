@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// An abstract base class for all Data Stores
+    /// </summary>
     public abstract class DataStore
     {
 

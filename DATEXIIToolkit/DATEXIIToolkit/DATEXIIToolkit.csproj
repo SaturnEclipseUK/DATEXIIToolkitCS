@@ -145,7 +145,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\FeedType.cs" />
     <Compile Include="Common\LogWrapper.cs" />
-    <Compile Include="Common\SoapEnvelope.cs" />
     <Compile Include="Common\UnZipUtils.cs" />
     <Compile Include="Controllers\DataObjectController.cs" />
     <Compile Include="Controllers\DATEXIIClientController.cs" />

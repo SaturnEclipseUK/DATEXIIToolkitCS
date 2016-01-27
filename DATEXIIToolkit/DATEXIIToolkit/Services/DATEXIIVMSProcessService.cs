@@ -8,6 +8,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes VMS DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the VMS data store.
+    /// </summary>
     public class DATEXIIVMSProcessService : DATEXIIProcessService
     {
         private LogWrapper logWrapper;

@@ -9,6 +9,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes FusedSensorOnly DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the FusedSensorOnly data store.
+    /// </summary>
     public class DATEXIIFusedSensorOnlyProcessService : DATEXIIProcessService
     {
         private LogWrapper logWrapper;

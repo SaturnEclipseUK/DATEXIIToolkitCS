@@ -6,7 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
-    
+    /// <summary>
+    /// This data store contains the NwkLinkStatic data indexed by predefined location ID.
+    /// </summary>
     public class NwkLinkStaticDataStore : DataStore
     {
 

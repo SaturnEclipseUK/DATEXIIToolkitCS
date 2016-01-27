@@ -6,7 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
-
+    /// <summary>
+    /// This data store contains the FusedFVDAndSensor data indexed by link ID.
+    /// </summary>
     public class FusedFVDAndSensorDataStore : DataStore
     {
         

@@ -11,6 +11,10 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service retrieves the latest network model and forwards it to 
+    /// the DATEX II Update Service for processing.
+    /// </summary>
     public class DATEXIINetworkModelUpdateService : DATEXIIProcessService
     {
         LogWrapper logWrapper;

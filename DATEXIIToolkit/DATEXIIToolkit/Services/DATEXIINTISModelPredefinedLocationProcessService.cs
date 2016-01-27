@@ -9,6 +9,11 @@ using System.Web;
 
 namespace DATEXIIToolkit.Services
 {
+    /// <summary>
+    /// This service processes PredefinedLocation DATEX II v2 messages (D2LogicalModel).
+    /// The payloads are inserted into the NwkLinkStatic, NwkNodeStatic, NwkShapeStatic,
+    /// ANPRRouteStatic, HATRISSectionStatic and AlternateRouteStatic data stores.
+    /// </summary>
     public class DATEXIINTISModelPredefinedLocationProcessService : DATEXIIProcessService
     {
         LogWrapper logWrapper;

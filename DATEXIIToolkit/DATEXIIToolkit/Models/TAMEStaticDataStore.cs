@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the TAMEStatic data indexed by measurement site record ID.
+    /// </summary>
     public class TAMEStaticDataStore : DataStore
     {
 

@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the ANPR data indexed by measurement site reference ID.
+    /// </summary>
     public class ANPRDataStore : DataStore
     {
 

@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DATEXIIToolkit.Models
 {
+    /// <summary>
+    /// This data store contains the VMSStatic data indexed by VMS unit record ID.
+    /// </summary>
     public class VMSStaticDataStore : DataStore
     {
         public VMSStaticDataStore() : base()
