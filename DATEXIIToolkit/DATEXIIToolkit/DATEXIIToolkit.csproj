@@ -145,6 +145,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\FeedType.cs" />
     <Compile Include="Common\LogWrapper.cs" />
+    <Compile Include="Common\SoapEnvelope.cs" />
     <Compile Include="Common\UnZipUtils.cs" />
     <Compile Include="Controllers\DataObjectController.cs" />
     <Compile Include="Controllers\DATEXIIClientController.cs" />
@@ -221,6 +222,7 @@
     <None Include="Common\DATEX_II_2_0_NTIS_Extensions_R2.5_v7.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\D2TK.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

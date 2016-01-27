@@ -26,8 +26,7 @@ namespace DATEXIIToolkit.Services
             {
                 logWrapper.Debug("ANPR Update");
             }
-            anprDataStore.clearDataStore();
-
+            
             MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.payloadPublication;
 
             if (measuredDataPublication != null)

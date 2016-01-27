@@ -26,8 +26,6 @@ namespace DATEXIIToolkit.Services
                 logWrapper.Info("TMU Update");
             }
 
-            tmuDataStore.clearDataStore();
-
             MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.payloadPublication;
 
             if (measuredDataPublication != null)

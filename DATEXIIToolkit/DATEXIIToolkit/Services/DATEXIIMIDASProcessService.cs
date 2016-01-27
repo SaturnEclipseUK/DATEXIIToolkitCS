@@ -25,9 +25,7 @@ namespace DATEXIIToolkit.Services
             {
                 logWrapper.Debug("MIDAS Update");
             }
-
-            midasDataStore.clearDataStore();
-
+            
             MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.payloadPublication;
 
             if (measuredDataPublication != null)

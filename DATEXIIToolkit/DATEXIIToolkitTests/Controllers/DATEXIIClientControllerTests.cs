@@ -51,33 +51,33 @@ namespace DATEXIIToolkit.Controllers.Tests
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()){}
 
-            
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.vmsDataCount();
-            Assert.IsTrue(result.Content.Equals("14652"));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.vmsData("CFB613DE831C3254E0433CC411ACFD01");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<int> result1 = (JsonResult<int>)dataObjectController.vmsDataCount();
+            Assert.IsTrue(result1.Content.Equals(14652));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.vmsDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.vmsData("CFB613DE831C3254E0433CC411ACFD01");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.vmsStaticDataCount();
-            Assert.IsTrue(result.Content.Equals("3476"));
+            JsonResult<LinkedList<VMSData>> result3 = (JsonResult<LinkedList<VMSData>>)dataObjectController.vmsDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.vmsStaticData("CFB613DE831C3254E0433CC411ACFD01");
-            Assert.IsTrue(result.Content.Length > 5);
-            
-            result = (OkNegotiatedContentResult<string>)dataObjectController.vmsStaticDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            result1 = (JsonResult<int>)dataObjectController.vmsStaticDataCount();
+            Assert.IsTrue(result1.Content.Equals(3476));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.matrixSignalStaticDataCount();
-            Assert.IsTrue(result.Content.Equals("11433"));
+            result2 = (JsonResult<DataObject>)dataObjectController.vmsStaticData("CFB613DE831C3254E0433CC411ACFD01");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.matrixSignalStaticData("D250950213C47952E0433CC411ACA994");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<VMSStaticData>> result4 = (JsonResult<LinkedList<VMSStaticData>>)dataObjectController.vmsStaticDataAll();
+            Assert.IsTrue(result4.Content.Count > 5);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.matrixSignalStaticDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            result1 = (JsonResult<int>)dataObjectController.matrixSignalStaticDataCount();
+            Assert.IsTrue(result1.Content.Equals(11433));
+
+            result2 = (JsonResult<DataObject>)dataObjectController.matrixSignalStaticData("D250950213C47952E0433CC411ACA994");
+            Assert.IsTrue(result2 != null);
+
+            JsonResult<LinkedList<MatrixSignalStaticData>> result5 = (JsonResult<LinkedList<MatrixSignalStaticData>>)dataObjectController.matrixSignalStaticDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -169,23 +169,23 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
 <siteMeasurements>
 */
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.tmuDataCount();
-            Assert.IsTrue(result.Content.Equals("111"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.tmuDataCount();
+            Assert.IsTrue(result.Content.Equals(111));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.tmuData("C6E971CAD11D789BE0433CC411ACCCEA");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.tmuData("C6E971CAD11D789BE0433CC411ACCCEA");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.tmuDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<TMUData>> result3 = (JsonResult<LinkedList<TMUData>>)dataObjectController.tmuDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.tmuStaticDataCount();
-            Assert.IsTrue(result.Content.Equals("2261"));
+            JsonResult<int> result4 = (JsonResult<int>)dataObjectController.tmuStaticDataCount();
+            Assert.IsTrue(result4.Content.Equals(2261));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.tmuStaticData("C6E971CAD11D789BE0433CC411ACCCEA");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result5 = (JsonResult<DataObject>)dataObjectController.tmuStaticData("C6E971CAD11D789BE0433CC411ACCCEA");
+            Assert.IsTrue(result5 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.tmuStaticDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<TMUStaticData>> result6 = (JsonResult<LinkedList<TMUStaticData>>)dataObjectController.tmuStaticDataAll();
+            Assert.IsTrue(result6.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -207,23 +207,23 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()) { }
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.midasDataCount();
-            Assert.IsTrue(result.Content.Equals("113"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.midasDataCount();
+            Assert.IsTrue(result.Content.Equals(113));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.midasData("3E7A28670A4145689D0106E0257790F9");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.midasData("3E7A28670A4145689D0106E0257790F9");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.midasDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<MIDASData>> result3 = (JsonResult<LinkedList<MIDASData>>)dataObjectController.midasDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.midasStaticDataCount();
-            Assert.IsTrue(result.Content.Equals("6128"));
+            JsonResult<int> result4 = (JsonResult<int>)dataObjectController.midasStaticDataCount();
+            Assert.IsTrue(result4.Content.Equals(6128));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.midasStaticData("3E7A28670A4145689D0106E0257790F9");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result5 = (JsonResult<DataObject>)dataObjectController.midasStaticData("3E7A28670A4145689D0106E0257790F9");
+            Assert.IsTrue(result5 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.midasStaticDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<MIDASStaticData>> result6 = (JsonResult<LinkedList<MIDASStaticData>>)dataObjectController.midasStaticDataAll();
+            Assert.IsTrue(result6.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -245,14 +245,14 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()) { }
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.fusedSensorOnlyDataCount();
-            Assert.IsTrue(result.Content.Equals("27345"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.fusedSensorOnlyDataCount();
+            Assert.IsTrue(result.Content.Equals(27345));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.fusedSensorOnlyData("TravelTimeData101000101");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.fusedSensorOnlyData("TravelTimeData101000101");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.fusedSensorOnlyDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<FusedSensorOnlyData>> result3 = (JsonResult<LinkedList<FusedSensorOnlyData>>)dataObjectController.fusedSensorOnlyDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -274,14 +274,14 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()) { }
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.fusedFVDAndSensorDataCount();
-            Assert.IsTrue(result.Content.Equals("31406"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.fusedFVDAndSensorDataCount();
+            Assert.IsTrue(result.Content.Equals(31406));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.fusedFVDAndSensorData("TrafficSpeed102003601");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.fusedFVDAndSensorData("TrafficSpeed102003601");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.fusedFVDAndSensorDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<FusedFVDAndSensorData>> result3 = (JsonResult<LinkedList<FusedFVDAndSensorData>>)dataObjectController.fusedFVDAndSensorDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -303,14 +303,14 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()) { }
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.eventDataCount();
-            Assert.IsTrue(result.Content.Equals("2276"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.eventDataCount();
+            Assert.IsTrue(result.Content.Equals(2276));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.eventData("RW-15-04-28-000517");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.eventData("RW-15-04-28-000517");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.eventDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<EventData>> result3 = (JsonResult<LinkedList<EventData>>)dataObjectController.eventDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
         }
 
         [TestMethod()]
@@ -332,14 +332,14 @@ measurementSiteReference id="C6E971CAD11D789BE0433CC411ACCCEA" version="1.0" tar
             datexIIClientController.Post(httpRequest);
             while (datexIIUpdateService.workPending()) { }
 
-            OkNegotiatedContentResult<string> result = (OkNegotiatedContentResult<string>)dataObjectController.anprDataCount();
-            Assert.IsTrue(result.Content.Equals("227"));
+            JsonResult<int> result = (JsonResult<int>)dataObjectController.anprDataCount();
+            Assert.IsTrue(result.Content.Equals(227));
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.anprData("ANPR_Measurement_Site_30071387");
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<DataObject> result2 = (JsonResult<DataObject>)dataObjectController.anprData("ANPR_Measurement_Site_30071387");
+            Assert.IsTrue(result2 != null);
 
-            result = (OkNegotiatedContentResult<string>)dataObjectController.anprDataAll();
-            Assert.IsTrue(result.Content.Length > 5);
+            JsonResult<LinkedList<ANPRData>> result3 = (JsonResult<LinkedList<ANPRData>>)dataObjectController.anprDataAll();
+            Assert.IsTrue(result3.Content.Count > 5);
         }
 
         [TestMethod()]

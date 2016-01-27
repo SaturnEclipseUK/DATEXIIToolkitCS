@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using System.Web;
+using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace DATEXIIToolkit.Services
@@ -72,22 +74,36 @@ namespace DATEXIIToolkit.Services
                     xml = messageQueue.Dequeue();
                 }
                     
-            }
+            }            
             while (xml != null)
-            {
-                byte[] byteArray = xml.Buffer;
-                /*XmlSerializer mySoapSerializer = new XmlSerializer(typeof(Envelope));
-                Envelope soapEnvelope = (Envelope)mySoapSerializer.Deserialize(new MemoryStream(byteArray));*/
-                
-                XmlSerializer myDIISerializer = new XmlSerializer(typeof(D2LogicalModel));
-                D2LogicalModel d2lm = (D2LogicalModel)myDIISerializer.Deserialize(new MemoryStream(byteArray));
-                string feedType = FeedType.getFeedType(d2lm.payloadPublication.feedType);
-                DATEXIIProcessService datexiiProcessService = datexiiProcessServiceFactory.getServiceType(feedType);
-                if (datexiiProcessService != null)
+            {               
+                try {
+                    XmlSerializer myDIISerializer = new XmlSerializer(typeof(D2LogicalModel));                    
+                    XmlReader xmlReader = XmlReader.Create(new StringReader(Encoding.ASCII.GetString(xml.Buffer)));
+                    Boolean soap = true;
+                    try {
+                        xmlReader.ReadStartElement("Envelope", "http://schemas.xmlsoap.org/soap/envelope/");
+                        xmlReader.ReadStartElement("Body", "http://schemas.xmlsoap.org/soap/envelope/");
+                    } catch (XmlException ex)
+                    {
+                        soap = false;
+                    }
+                    D2LogicalModel d2lm = (D2LogicalModel)myDIISerializer.Deserialize(xmlReader);
+                    if (soap)
+                    {
+                        xmlReader.ReadEndElement();
+                        xmlReader.ReadEndElement();
+                    }                    
+                    string feedType = FeedType.getFeedType(d2lm.payloadPublication.feedType);
+                    DATEXIIProcessService datexiiProcessService = datexiiProcessServiceFactory.getServiceType(feedType);
+                    if (datexiiProcessService != null)
+                    {
+                        datexiiProcessService.processMessage(d2lm);
+                    }
+                } catch (Exception ex)
                 {
-                    datexiiProcessService.processMessage(d2lm);
+                    logWrapper.Error(ex.ToString());
                 }
-
                 lock(messageQueue){
                     if (messageQueue.Count() > QUEUE_EMPTY)
                     {
