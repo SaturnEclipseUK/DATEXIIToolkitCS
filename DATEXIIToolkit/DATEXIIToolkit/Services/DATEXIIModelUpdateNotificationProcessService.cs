@@ -63,37 +63,3 @@ namespace DATEXIIToolkit.Services
         }
     }
 }
-
-/*
-
-@Service
-public class DATEXIIModelUpdateNotificationProcessService extends DATEXIIProcessService {
-
-	final Logger log = LoggerFactory.getLogger(DATEXIIModelUpdateNotificationProcessService.class);
-	
-	@Autowired
-	DATEXIINetworkModelUpdateService datexiiNetworkModelUpdateService;
-	
-	@Value("${ntisNwkModelBaseUrl}")
-	private String url;
-	
-	@Override
-	public void processMessage(D2LogicalModel d2LogicalModel) {
-		
-		GenericPublication genericPublication = (GenericPublication)d2LogicalModel.getPayloadPublication();
-		NtisModelVersionInformation ntisModelVersionInformation = genericPublication.getGenericPublicationExtension().getNtisModelVersionInformation();
-		
-		Date publicationTime = ntisModelVersionInformation.getModelPublicationTime().toGregorianCalendar().getTime();
-		String modelVersion = ntisModelVersionInformation.getModelVersion();
-		String modelFilename = ntisModelVersionInformation.getModelFilename();
-		
-		if (url != null){
-			datexiiNetworkModelUpdateService.updateNetworkModel(url+modelFilename);	
-		} else {
-			log.error("NTIS_NETWORK_MODEL_BASE_URL is not set in application.properties file");
-		}
-	}
-
-}
-
-*/
