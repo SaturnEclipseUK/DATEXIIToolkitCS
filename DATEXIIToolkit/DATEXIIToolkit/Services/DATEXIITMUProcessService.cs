@@ -44,10 +44,20 @@ namespace DATEXIIToolkit.Services
                     logWrapper.Debug("TMU Update(" + siteMeasurementsList.Length + " objects)");
                 }
 
+                Dictionary<String, LinkedList<SiteMeasurements>> siteMeasurementsIndex = 
+                    new Dictionary<String, LinkedList<SiteMeasurements>>();
+
                 for (int siteMeasurementsListPos = 0; siteMeasurementsListPos < siteMeasurementsList.Length; siteMeasurementsListPos++)
                 {
                     SiteMeasurements siteMeasurements = siteMeasurementsList[siteMeasurementsListPos];
-                    processSituation(siteMeasurements, publicationTime);
+                    processSituation(siteMeasurements, publicationTime, siteMeasurementsIndex);
+                }
+
+                foreach (String tmuIdentifier in siteMeasurementsIndex.Keys)
+                {
+                    TMUData tmuData = new TMUData(tmuIdentifier, publicationTime, siteMeasurementsIndex[tmuIdentifier]);
+
+                    tmuDataStore.updateData(tmuData);
                 }
             }
 
@@ -57,7 +67,8 @@ namespace DATEXIIToolkit.Services
             }
         }
 
-        private void processSituation(SiteMeasurements siteMeasurements, DateTime publicationTime)
+        private void processSituation(SiteMeasurements siteMeasurements, DateTime publicationTime,
+            Dictionary<String, LinkedList<SiteMeasurements>> siteMeasurementsIndex)
         {
             String tmuIdentifier = siteMeasurements.measurementSiteReference.id;
 
@@ -66,11 +77,16 @@ namespace DATEXIIToolkit.Services
                 logWrapper.Debug("Processing TMU Identifier(" + tmuIdentifier + ")");
             }
 
-            TMUData tmuData = new TMUData(tmuIdentifier, publicationTime, siteMeasurements);
-
-            tmuDataStore.updateData(tmuData);
-        }
-
-
+            LinkedList<SiteMeasurements> siteMeasurementsList;
+            if (siteMeasurementsIndex.ContainsKey(tmuIdentifier))
+            {
+                siteMeasurementsList = siteMeasurementsIndex[tmuIdentifier];
+            }
+            else {
+                siteMeasurementsList = new LinkedList<SiteMeasurements>();
+                siteMeasurementsIndex.Add(tmuIdentifier, siteMeasurementsList);
+            }
+            siteMeasurementsList.AddLast(siteMeasurements);            
+        }        
     }
 }

@@ -10,14 +10,14 @@ namespace DATEXIIToolkit.Models.DataObjects
 
         public String tmuIdentifier;
         public DateTime publicationTime;
-        public SiteMeasurements tmuData;
+        public LinkedList<SiteMeasurements> tmuData;
 
         public TMUData()
         {
         }
 
         public TMUData(String tmuIdentifier, DateTime publicationTime,
-                SiteMeasurements tmuData)
+                LinkedList<SiteMeasurements> tmuData)
         {
             this.tmuIdentifier = tmuIdentifier;
             this.publicationTime = publicationTime;
@@ -34,7 +34,7 @@ namespace DATEXIIToolkit.Models.DataObjects
             return publicationTime;
         }
 
-        public SiteMeasurements getTMUData()
+        public LinkedList<SiteMeasurements> getTMUData()
         {
             return tmuData;
         }
