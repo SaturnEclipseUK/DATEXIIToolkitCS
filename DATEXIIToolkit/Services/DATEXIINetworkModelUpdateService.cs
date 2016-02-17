@@ -66,10 +66,13 @@ namespace DATEXIIToolkit.Services
             {
                 logWrapper.Info("Downloading network model(" + url + ")");
                 Directory.CreateDirectory(nwkModelDirectory);
-                string myStringWebResource = null;
-
+                
                 myWebClient = new WebClient();
-                myStringWebResource = url;
+                if (username != null && password != null)
+                {
+                    string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(username + ":" + password));
+                    myWebClient.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", credentials);
+                }
                 myWebClient.DownloadFile(url, nwkModelDirectory + nwkModelPath);
             }
             catch (Exception e)
