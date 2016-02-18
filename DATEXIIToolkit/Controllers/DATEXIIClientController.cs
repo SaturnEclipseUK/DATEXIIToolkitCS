@@ -28,7 +28,7 @@ namespace DATEXIIToolkit.Controllers
             datexIIUpdateService = DATEXIIUpdateService.GetInstance();
         }
 
-        [Route("subscriber/submit")]
+        [Route("subscriber/update")]
         [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage request)
         {
