@@ -25,7 +25,7 @@ namespace DATEXIIToolkit.Controllers
 
         public DataObjectController()
         {
-            logWrapper = new LogWrapper("DataObjectController");
+            logWrapper = new LogWrapper("DataObjectController");           
         }               
 
         [Route("api/vms/all")]
@@ -33,7 +33,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult vmsDataAll()
         {
             VMSDataStore vmsDataStore = (VMSDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_DATA_STORE);
-            return Json(vmsDataStore.getAllVMSData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });         
+            return Json(vmsDataStore.getAllVMSData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });         
         }
 
         [Route("api/vms")]       
@@ -41,7 +41,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult vmsData(string id)
         {
             VMSDataStore vmsDataStore = (VMSDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_DATA_STORE);
-            return Json(vmsDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(vmsDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/vms/count")]
@@ -49,14 +49,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult vmsDataCount()
         {
             VMSDataStore vmsDataStore = (VMSDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_DATA_STORE);
-            return Json(vmsDataStore.getAllVMSData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(vmsDataStore.getAllVMSData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/event")]
         [HttpGet]
         public IHttpActionResult eventData(string id) {
             EventDataStore eventDataStore = (EventDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.EVENT_DATA_STORE);
-            return Json(eventDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(eventDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/event/all")]
@@ -64,7 +64,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult eventDataAll()
         {
             EventDataStore eventDataStore = (EventDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.EVENT_DATA_STORE);
-            return Json(eventDataStore.getAllEventData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(eventDataStore.getAllEventData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/event/count")]
@@ -72,14 +72,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult eventDataCount()
         {
             EventDataStore eventDataStore = (EventDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.EVENT_DATA_STORE);
-            return Json(eventDataStore.getAllEventData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(eventDataStore.getAllEventData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anpr")]
         [HttpGet]
         public IHttpActionResult anprData(string id) {
             ANPRDataStore anprDataStore = (ANPRDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_DATA_STORE);
-            return Json(anprDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anpr/all")]
@@ -87,7 +87,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprDataAll()
         {
             ANPRDataStore anprDataStore = (ANPRDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_DATA_STORE);
-            return Json(anprDataStore.getAllANPRData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprDataStore.getAllANPRData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anpr/count")]
@@ -95,14 +95,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprDataCount()
         {
             ANPRDataStore anprDataStore = (ANPRDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_DATA_STORE);
-            return Json(anprDataStore.getAllANPRData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprDataStore.getAllANPRData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedFVDAndSensor")]
         [HttpGet]
         public IHttpActionResult fusedFVDAndSensorData(string id) {
             FusedFVDAndSensorDataStore fusedFVDAndSensorDataStore = (FusedFVDAndSensorDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_FVD_AND_SENSOR_DATA_STORE);
-            return Json(fusedFVDAndSensorDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedFVDAndSensorDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedFVDAndSensor/all")]
@@ -110,7 +110,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult fusedFVDAndSensorDataAll()
         {
             FusedFVDAndSensorDataStore fusedFVDAndSensorDataStore = (FusedFVDAndSensorDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_FVD_AND_SENSOR_DATA_STORE);
-            return Json(fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedFVDAndSensor/count")]
@@ -118,7 +118,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult fusedFVDAndSensorDataCount()
         {
             FusedFVDAndSensorDataStore fusedFVDAndSensorDataStore = (FusedFVDAndSensorDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_FVD_AND_SENSOR_DATA_STORE);
-            return Json(fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedSensorOnly")]
@@ -126,7 +126,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult fusedSensorOnlyData(string id)
         {
             FusedSensorOnlyDataStore fusedSensorOnlyDataStore = (FusedSensorOnlyDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_SENSOR_ONLY_DATA_STORE);
-            return Json(fusedSensorOnlyDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedSensorOnlyDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedSensorOnly/all")]
@@ -134,7 +134,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult fusedSensorOnlyDataAll()
         {
             FusedSensorOnlyDataStore fusedSensorOnlyDataStore = (FusedSensorOnlyDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_SENSOR_ONLY_DATA_STORE);
-            return Json(fusedSensorOnlyDataStore.getAllFusedSensorOnlyData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedSensorOnlyDataStore.getAllFusedSensorOnlyData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/fusedSensorOnly/count")]
@@ -142,14 +142,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult fusedSensorOnlyDataCount()
         {
             FusedSensorOnlyDataStore fusedSensorOnlyDataStore = (FusedSensorOnlyDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.FUSED_SENSOR_ONLY_DATA_STORE);
-            return Json(fusedSensorOnlyDataStore.getAllFusedSensorOnlyData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(fusedSensorOnlyDataStore.getAllFusedSensorOnlyData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midas")]
         [HttpGet]
         public IHttpActionResult midasData(string id) {
             MIDASDataStore midasDataStore = (MIDASDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_DATA_STORE);
-            return Json(midasDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midas/all")]
@@ -157,7 +157,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult midasDataAll()
         {
             MIDASDataStore midasDataStore = (MIDASDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_DATA_STORE);
-            return Json(midasDataStore.getAllMIDASData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasDataStore.getAllMIDASData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midas/count")]
@@ -165,7 +165,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult midasDataCount()
         {
             MIDASDataStore midasDataStore = (MIDASDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_DATA_STORE);
-            return Json(midasDataStore.getAllMIDASData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasDataStore.getAllMIDASData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmu")]
@@ -173,7 +173,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tmuData(string id)
         {
             TMUDataStore tmuDataStore = (TMUDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_DATA_STORE);
-            return Json(tmuDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmu/all")]
@@ -181,7 +181,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tmuDataAll()
         {
             TMUDataStore tmuDataStore = (TMUDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_DATA_STORE);
-            return Json(tmuDataStore.getAllTMUData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuDataStore.getAllTMUData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmu/count")]
@@ -189,7 +189,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tmuDataCount()
         {
             TMUDataStore tmuDataStore = (TMUDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_DATA_STORE);
-            return Json(tmuDataStore.getAllTMUData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuDataStore.getAllTMUData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
 
@@ -197,7 +197,7 @@ namespace DATEXIIToolkit.Controllers
         [HttpGet]
         public IHttpActionResult vmsStaticData(string id) {
             VMSStaticDataStore vmsStaticDataStore = (VMSStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_STATIC_DATA_STORE);
-            return Json(vmsStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(vmsStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/vmsStatic/all")]
@@ -205,7 +205,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult vmsStaticDataAll()
         {
             VMSStaticDataStore vmsStaticDataStore = (VMSStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_STATIC_DATA_STORE);
-            return Json(vmsStaticDataStore.getAllVMSStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(vmsStaticDataStore.getAllVMSStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/vmsStatic/count")]
@@ -213,7 +213,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult vmsStaticDataCount()
         {
             VMSStaticDataStore vmsStaticDataStore = (VMSStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.VMS_STATIC_DATA_STORE);
-            return Json(vmsStaticDataStore.getAllVMSStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(vmsStaticDataStore.getAllVMSStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/matrixSignalStatic")]
@@ -221,7 +221,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult matrixSignalStaticData(string id)
         {
             MatrixSignalStaticDataStore matrixSignalStaticDataStore = (MatrixSignalStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MATRIX_SIGNAL_STATIC_DATA_STORE);
-            return Json(matrixSignalStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(matrixSignalStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/matrixSignalStatic/all")]
@@ -229,7 +229,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult matrixSignalStaticDataAll()
         {
             MatrixSignalStaticDataStore matrixSignalStaticDataStore = (MatrixSignalStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MATRIX_SIGNAL_STATIC_DATA_STORE);
-            return Json(matrixSignalStaticDataStore.getAllMatrixSignalStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(matrixSignalStaticDataStore.getAllMatrixSignalStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/matrixSignalStatic/count")]
@@ -237,7 +237,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult matrixSignalStaticDataCount()
         {
             MatrixSignalStaticDataStore matrixSignalStaticDataStore = (MatrixSignalStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MATRIX_SIGNAL_STATIC_DATA_STORE);
-            return Json(matrixSignalStaticDataStore.getAllMatrixSignalStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(matrixSignalStaticDataStore.getAllMatrixSignalStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tameStatic")]
@@ -245,7 +245,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tameStaticData(string id)
         {
             TAMEStaticDataStore tameStaticDataStore = (TAMEStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TAME_STATIC_DATA_STORE);
-            return Json(tameStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tameStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tameStatic/all")]
@@ -253,7 +253,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tameStaticDataAll()
         {
             TAMEStaticDataStore tameStaticDataStore = (TAMEStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TAME_STATIC_DATA_STORE);
-            return Json(tameStaticDataStore.getAllTAMEStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tameStaticDataStore.getAllTAMEStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tameStatic/count")]
@@ -261,14 +261,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tameStaticDataCount()
         {
             TAMEStaticDataStore tameStaticDataStore = (TAMEStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TAME_STATIC_DATA_STORE);
-            return Json(tameStaticDataStore.getAllTAMEStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tameStaticDataStore.getAllTAMEStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midasStatic")]
         [HttpGet]
         public IHttpActionResult midasStaticData(string id) {
             MIDASStaticDataStore midasStaticDataStore = (MIDASStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_STATIC_DATA_STORE);
-            return Json(midasStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midasStatic/all")]
@@ -276,7 +276,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult midasStaticDataAll()
         {
             MIDASStaticDataStore midasStaticDataStore = (MIDASStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_STATIC_DATA_STORE);
-            return Json(midasStaticDataStore.getAllMIDASStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasStaticDataStore.getAllMIDASStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/midasStatic/count")]
@@ -284,7 +284,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult midasStaticDataCount()
         {
             MIDASStaticDataStore midasStaticDataStore = (MIDASStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.MIDAS_STATIC_DATA_STORE);
-            return Json(midasStaticDataStore.getAllMIDASStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(midasStaticDataStore.getAllMIDASStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anprStatic")]
@@ -292,7 +292,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprStaticData(string id) {
 
             ANPRStaticDataStore anprStaticDataStore = (ANPRStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_STATIC_DATA_STORE);
-            return Json(anprStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anprStatic/all")]
@@ -300,7 +300,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprStaticDataAll()
         {
             ANPRStaticDataStore anprStaticDataStore = (ANPRStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_STATIC_DATA_STORE);
-            return Json(anprStaticDataStore.getAllANPRStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprStaticDataStore.getAllANPRStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anprStatic/count")]
@@ -308,14 +308,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprStaticDataCount()
         {
             ANPRStaticDataStore anprStaticDataStore = (ANPRStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_STATIC_DATA_STORE);
-            return Json(anprStaticDataStore.getAllANPRStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprStaticDataStore.getAllANPRStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmuStatic")]
         [HttpGet]
         public IHttpActionResult tmuStaticData(string id) {
             TMUStaticDataStore tmuStaticDataStore = (TMUStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_STATIC_DATA_STORE);
-            return Json(tmuStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmuStatic/all")]
@@ -323,7 +323,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tmuStaticDataAll()
         {
             TMUStaticDataStore tmuStaticDataStore = (TMUStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_STATIC_DATA_STORE);
-            return Json(tmuStaticDataStore.getAllTMUStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuStaticDataStore.getAllTMUStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/tmuStatic/count")]
@@ -331,14 +331,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult tmuStaticDataCount()
         {
             TMUStaticDataStore tmuStaticDataStore = (TMUStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.TMU_STATIC_DATA_STORE);
-            return Json(tmuStaticDataStore.getAllTMUStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(tmuStaticDataStore.getAllTMUStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/linkShapeStatic")]
         [HttpGet]
         public IHttpActionResult linkShapeStaticData(string id) {
             LinkShapeStaticDataStore linkShapeStaticDataStore = (LinkShapeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.LINK_SHAPE_STATIC_DATA_STORE);
-            return Json(linkShapeStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(linkShapeStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/linkShapeStatic/all")]
@@ -346,7 +346,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult linkShapeStaticDataAll()
         {
             LinkShapeStaticDataStore linkShapeStaticDataStore = (LinkShapeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.LINK_SHAPE_STATIC_DATA_STORE);
-            return Json(linkShapeStaticDataStore.getAllLinkShapeStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(linkShapeStaticDataStore.getAllLinkShapeStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/linkShapeStatic/count")]
@@ -354,7 +354,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult linkShapeStaticDataCount()
         {
             LinkShapeStaticDataStore linkShapeStaticDataStore = (LinkShapeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.LINK_SHAPE_STATIC_DATA_STORE);
-            return Json(linkShapeStaticDataStore.getAllLinkShapeStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(linkShapeStaticDataStore.getAllLinkShapeStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkLinkStatic")]
@@ -362,7 +362,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkLinkStaticData(string id) {
 
             NwkLinkStaticDataStore nwkLinkStaticDataStore = (NwkLinkStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_LINK_STATIC_DATA_STORE);
-            return Json(nwkLinkStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkLinkStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkLinkStatic/all")]
@@ -370,7 +370,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkLinkStaticDataAll()
         {
             NwkLinkStaticDataStore nwkLinkStaticDataStore = (NwkLinkStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_LINK_STATIC_DATA_STORE);
-            return Json(nwkLinkStaticDataStore.getAllNwkLinkStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkLinkStaticDataStore.getAllNwkLinkStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkLinkStatic/count")]
@@ -378,14 +378,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkLinkStaticDataCount()
         {
             NwkLinkStaticDataStore nwkLinkStaticDataStore = (NwkLinkStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_LINK_STATIC_DATA_STORE);
-            return Json(nwkLinkStaticDataStore.getAllNwkLinkStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkLinkStaticDataStore.getAllNwkLinkStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/anprRouteStatic")]
         [HttpGet]
         public IHttpActionResult anprRouteStaticData(string id) {
             ANPRRouteStaticDataStore anprRouteStaticDataStore = (ANPRRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_ROUTE_STATIC_DATA_STORE);
-            return Json(anprRouteStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprRouteStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
         
         [Route("api/anprRouteStatic/all")]
@@ -393,7 +393,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprRouteStaticDataAll()
         {
             ANPRRouteStaticDataStore anprRouteStaticDataStore = (ANPRRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_ROUTE_STATIC_DATA_STORE);
-            return Json(anprRouteStaticDataStore.getAllANPRRouteStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprRouteStaticDataStore.getAllANPRRouteStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
         
         [Route("api/anprRouteStatic/count")]
@@ -401,14 +401,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult anprRouteStaticDataCount()
         {
             ANPRRouteStaticDataStore anprRouteStaticDataStore = (ANPRRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ANPR_ROUTE_STATIC_DATA_STORE);
-            return Json(anprRouteStaticDataStore.getAllANPRRouteStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(anprRouteStaticDataStore.getAllANPRRouteStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/hatrisSectionStatic")]
         [HttpGet]
         public IHttpActionResult hatrisSectionStaticData(string id) {
             HATRISSectionStaticDataStore hatrisSectionStaticDataStore = (HATRISSectionStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.HATRIS_SECTION_STATIC_DATA_STORE);
-            return Json(hatrisSectionStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(hatrisSectionStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/hatrisSectionStatic/all")]
@@ -416,7 +416,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult hatrisSectionStaticDataAll()
         {
             HATRISSectionStaticDataStore hatrisSectionStaticDataStore = (HATRISSectionStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.HATRIS_SECTION_STATIC_DATA_STORE);
-            return Json(hatrisSectionStaticDataStore.getAllHATRISSectionStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(hatrisSectionStaticDataStore.getAllHATRISSectionStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/hatrisSectionStatic/count")]
@@ -424,7 +424,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult hatrisSectionStaticDataCount()
         {
             HATRISSectionStaticDataStore hatrisSectionStaticDataStore = (HATRISSectionStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.HATRIS_SECTION_STATIC_DATA_STORE);
-            return Json(hatrisSectionStaticDataStore.getAllHATRISSectionStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(hatrisSectionStaticDataStore.getAllHATRISSectionStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkNodeStatic")]
@@ -432,7 +432,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkNodeStaticData(string id) {
 
             NwkNodeStaticDataStore nwkNodeStaticDataStore = (NwkNodeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_NODE_STATIC_DATA_STORE);
-            return Json(nwkNodeStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkNodeStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkNodeStatic/all")]
@@ -440,7 +440,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkNodeStaticDataAll()
         {
             NwkNodeStaticDataStore nwkNodeStaticDataStore = (NwkNodeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_NODE_STATIC_DATA_STORE);
-            return Json(nwkNodeStaticDataStore.getAllNwkNodeStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkNodeStaticDataStore.getAllNwkNodeStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/nwkNodeStatic/count")]
@@ -448,14 +448,14 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult nwkNodeStaticDataCount()
         {
             NwkNodeStaticDataStore nwkNodeStaticDataStore = (NwkNodeStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.NWK_NODE_STATIC_DATA_STORE);
-            return Json(nwkNodeStaticDataStore.getAllNwkNodeStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(nwkNodeStaticDataStore.getAllNwkNodeStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/alternateRouteStatic")]
         [HttpGet]
         public IHttpActionResult alternateRouteStaticData(string id) {
             AlternateRouteStaticDataStore alternateRouteStaticDataStore = (AlternateRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ALTERNATE_ROUTE_STATIC_DATA_STORE);
-            return Json(alternateRouteStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(alternateRouteStaticDataStore.getData(id), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
         
         [Route("api/alternateRouteStatic/all")]
@@ -463,7 +463,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult alternateRouteStaticDataAll()
         {
             AlternateRouteStaticDataStore alternateRouteStaticDataStore = (AlternateRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ALTERNATE_ROUTE_STATIC_DATA_STORE);
-            return Json(alternateRouteStaticDataStore.getAllAlternateRouteStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(alternateRouteStaticDataStore.getAllAlternateRouteStaticData(), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
 
         [Route("api/alternateRouteStatic/count")]
@@ -471,7 +471,7 @@ namespace DATEXIIToolkit.Controllers
         public IHttpActionResult alternateRouteStaticDataCount()
         { 
             AlternateRouteStaticDataStore alternateRouteStaticDataStore = (AlternateRouteStaticDataStore)DataStoreFactory.GetInstance().GetDataStore(DataStoreFactory.DATA_STORES.ALTERNATE_ROUTE_STATIC_DATA_STORE);
-            return Json(alternateRouteStaticDataStore.getAllAlternateRouteStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            return Json(alternateRouteStaticDataStore.getAllAlternateRouteStaticData().Count, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Converters = { new StringEnumConverter { } } });
         }
     }    
 }

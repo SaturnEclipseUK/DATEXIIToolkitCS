@@ -24,7 +24,7 @@ namespace DATEXIIToolkit
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            
+
             logWrapper = new LogWrapper("Global");
             logWrapper.Warning("*** Starting DATEXII Toolkit Web Services ***");
 
