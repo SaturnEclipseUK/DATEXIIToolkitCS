@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Timers;
 using System.Web;
 
 namespace DATEXIIToolkit.Services
@@ -14,14 +15,18 @@ namespace DATEXIIToolkit.Services
     /// </summary>
     public class DATEXIIModelUpdateNotificationProcessService : DATEXIIProcessService
     {
-        LogWrapper logWrapper;
+        static LogWrapper logWrapper;
 
-        DATEXIINetworkModelUpdateService datexiiNetworkModelUpdateService;
-        private bool loadNwkModelOnStartup;
-        private string ntisNwkModelUsername;
-        private string ntisNwkModelPassword;
-        private string ntisNetworkModelBaseURL;
+        static DATEXIINetworkModelUpdateService datexiiNetworkModelUpdateService;
+        private static bool loadNwkModelOnStartup;
+        static private string ntisNwkModelUsername;
+        static private string ntisNwkModelPassword;
+        static private string ntisNetworkModelBaseURL;
         private string networkModelFolder;
+        static private System.Timers.Timer networkModelRetryTimer;
+        private const int MAX_NUMBER_OF_NETWORK_MODEL_RETRIES = 5;
+        static private int numberOfNetworkModelRetries;
+        const int DOWNLOAD_NETWORK_MODEL_RETRY_PERIOD = 60000;
 
         public DATEXIIModelUpdateNotificationProcessService(DATEXIIProcessServiceFactory datexIIProcessServiceFactory) : base()
         {
@@ -32,16 +37,16 @@ namespace DATEXIIToolkit.Services
             ntisNetworkModelBaseURL = ConfigurationManager.AppSettings["ntisNetworkModelBaseURL"];
             networkModelFolder = ConfigurationManager.AppSettings["nwkModelDirectory"];
             datexiiNetworkModelUpdateService = (DATEXIINetworkModelUpdateService)datexIIProcessServiceFactory.getDATEXIIProcessService(DATEXIIProcessServiceFactory.DATA_SERVICE_TYPE.NWK_MODEL_UPDATE);
+            networkModelRetryTimer = new System.Timers.Timer();
+            networkModelRetryTimer.Elapsed += new ElapsedEventHandler(updateNetworkModel);
+            networkModelRetryTimer.Interval = DOWNLOAD_NETWORK_MODEL_RETRY_PERIOD;
         }
 
         public void initialise()
         {
             logWrapper.Info("Initialise network model update service");
-            
-            if (loadNwkModelOnStartup)
-            {
-                datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
-            }
+            numberOfNetworkModelRetries = MAX_NUMBER_OF_NETWORK_MODEL_RETRIES;
+            updateNetworkModel(null, null);
         }
 
         public override void processMessage(D2LogicalModel d2LogicalModel)
@@ -53,12 +58,36 @@ namespace DATEXIIToolkit.Services
             String modelVersion = ntisModelVersionInformation.modelVersion;
             String modelFilename = ntisModelVersionInformation.modelFilename;
 
+            numberOfNetworkModelRetries = MAX_NUMBER_OF_NETWORK_MODEL_RETRIES;
+
             if (ntisNetworkModelBaseURL != null)
             {
-                datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
+                updateNetworkModel(null, null);
+                //datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
             }
             else {
                 logWrapper.Error("NTIS_NETWORK_MODEL_BASE_URL is not set in application.properties file");
+            }
+        }
+
+        private static void updateNetworkModel(object source, ElapsedEventArgs e)
+        {
+            if (loadNwkModelOnStartup)
+            {
+                bool loadedNetworkModel = datexiiNetworkModelUpdateService.updateNetworkModel(ntisNetworkModelBaseURL, ntisNwkModelUsername, ntisNwkModelPassword);
+                if (loadedNetworkModel == false)
+                {
+                    if (numberOfNetworkModelRetries > 0) {
+                        logWrapper.Info("Download Network Model Retries remaining: " + numberOfNetworkModelRetries);
+                        numberOfNetworkModelRetries--;
+                        networkModelRetryTimer.Enabled = true;
+                    }
+                }
+                else
+                {
+                    networkModelRetryTimer.Enabled = false;
+                }
+                
             }
         }
     }

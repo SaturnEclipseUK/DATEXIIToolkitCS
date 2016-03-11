@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Timers;
 using System.Web;
 
 namespace DATEXIIToolkit.Services
@@ -32,12 +33,17 @@ namespace DATEXIIToolkit.Services
             nwkModelPath = ConfigurationManager.AppSettings["nwkModelPath"];
         }
 
-        public void updateNetworkModel(string url, string username, string password)
+        public bool updateNetworkModel(string url, string username, string password)
         {
+            bool fetchedNetworkModel = false;
             removeExistingNetworkModel();
-            fetchNetworkModel(url, username, password);
-            unzipNetworkModel();
-            parseNetworkModelXMLFiles();
+            fetchedNetworkModel = fetchNetworkModel(url, username, password);
+            if (fetchedNetworkModel == true)
+            {
+                unzipNetworkModel();
+                parseNetworkModelXMLFiles();
+            }
+            return fetchedNetworkModel;
         }
 
         private void removeExistingNetworkModel()
@@ -59,9 +65,10 @@ namespace DATEXIIToolkit.Services
             }
         }
 
-        private void fetchNetworkModel(String url, string username, string password)
+        private bool fetchNetworkModel(String url, string username, string password)
         {
             WebClient myWebClient = null;
+            bool fetchedNetworkModel = false;
             try
             {
                 logWrapper.Info("Downloading network model(" + url + ")");
@@ -74,6 +81,7 @@ namespace DATEXIIToolkit.Services
                     myWebClient.Headers[HttpRequestHeader.Authorization] = string.Format("Basic {0}", credentials);
                 }
                 myWebClient.DownloadFile(url, nwkModelDirectory + nwkModelPath);
+                fetchedNetworkModel = true;
             }
             catch (Exception e)
             {
@@ -87,6 +95,7 @@ namespace DATEXIIToolkit.Services
                     myWebClient.Dispose();
                 }
             }
+            return fetchedNetworkModel;
         }
 
         private void unzipNetworkModel()
